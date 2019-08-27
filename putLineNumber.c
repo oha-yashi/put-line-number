@@ -10,8 +10,8 @@ int main(int argc, char *argv[]){
     FILE *fread, *fwrite;
     char str[STR_MAX];
     int cnt = 1;/* 行番号は1から */
-    fp = fopen(argv[1], "r");
-    if(fp == NULL){
+    fread = fopen(argv[1], "r");
+    if(fread == NULL){
         printf("read file open error!\n");
         return -1;
     }
@@ -22,10 +22,13 @@ int main(int argc, char *argv[]){
     }
     printf("start reading %s\n", argv[1]);
 
-    while(fgets(str, sizeof(str), fp) != NULL){/* ここで\nまで読み込んでいるので */
+    while(fgets(str, sizeof(str), fopen) != NULL){/* ここで\nまで読み込んでいるので */
         fprintf(fwrite, "%4d  %s", cnt, str);/* ここでは\nいらない */
         cnt++;
     }
+
+    fclose(fopen);
+    fclose(fwrite);
 
     printf("end writing %s\n", argv[2]);
     return 0;
