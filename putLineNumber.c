@@ -2,12 +2,12 @@
 #define STR_MAX 256
 
 int main(int argc, char *argv[]){
-    if(argc != 3){
-        printf("!! This program puts LineNumber !!\n");
-        printf("type \"./gyouBangou <READ_FILENAME> <WRITE_FILENAME>\"\n");
+    if(argc != 2 && argc != 3){/* argcが2でも3でもない時エラー */
+        printf("!! This program puts Line Number !!\n");
+        printf("command: \"./pln <READ_FILENAME> (<WRITE_FILENAME>)\"\n");
         return -1;
     }
-    FILE *fp, *fwrite;
+    FILE *fread, *fwrite;
     char str[STR_MAX];
     int cnt = 1;/* 行番号は1から */
     fp = fopen(argv[1], "r");
